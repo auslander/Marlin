@@ -396,7 +396,7 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
 
       #if HAS_CUTTER
         case 3: M3_M4(false); break;                              // M3: Turn ON Laser | Spindle (clockwise), set Power | Speed
-        case 4: M3_M4(true ); break;                              // M4: Turn ON Laser | Spindle (counter-clockwise), set Power | Speed
+        case 4: M3_M4(true); break;                              // M4: Turn ON Laser | Spindle (counter-clockwise), set Power | Speed
         case 5: M5(); break;                                      // M5: Turn OFF Laser | Spindle
       #endif
 
@@ -408,6 +408,10 @@ void GcodeSuite::process_parsed_command(const bool no_ok/*=false*/) {
           case 8: M8(); break;                                    // M8: Flood coolant ON
         #endif
         case 9: M9(); break;                                      // M9: Coolant OFF
+      #else
+        case 7:                                            
+        case 8:                                            
+        case 9: break;                                            // Ignore Unused Commands from Lightburn
       #endif
 
       #if ENABLED(EXTERNAL_CLOSED_LOOP_CONTROLLER)
